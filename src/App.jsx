@@ -10,6 +10,14 @@ export default function App() {
   function handleChange(e) {
     setUserInput(e.target.value)
   }
+  function handleSubmit(e){
+    e.preventDefault()
+    const normalizedEmail=userInput.toLowerCase()
+    const isDublicate=emailList.some(email=>email.toLowerCase()===normalizedEmail)
+    setUserEmail(userInput);
+    setUserInput("");
+    setDuplicate(isDublicate);
+  }
 
   /* Challenge
 
@@ -35,7 +43,7 @@ export default function App() {
  */
 
   return (
-    <form className='form'>
+    <form className='form' onSubmit={handleSubmit}>
       <TopText userEmail={userEmail} duplicate={duplicate} />
 
       <div>
